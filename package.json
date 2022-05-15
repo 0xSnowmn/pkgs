@@ -1,0 +1,28 @@
+{
+  "name": "electron-quick-start",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/yghonem14/pkgs",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^18.2.3"
+  },
+  "dependencies": {
+    "electron-builder": "^23.0.3",
+    "electron-updater": "^5.0.1"
+  },
+  "build": "electron-builder build --win --publish never",
+  "deploy": "electron-builder build --win --publish always"
+}
