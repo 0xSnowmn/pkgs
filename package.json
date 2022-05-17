@@ -4,6 +4,8 @@
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
+    "build": "electron-builder build --win --publish never",
+    "deploy": "electron-builder build --win --publish always",
     "start": "electron ."
   },
   "repository": "https://github.com/yghonem14/pkgs",
@@ -17,12 +19,11 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^18.2.3"
+    "electron": "^18.2.3",
+    "electron-builder": "^23.0.3"
   },
   "dependencies": {
-    "electron-builder": "^23.0.3",
     "electron-updater": "^5.0.1"
-  },
-  "build": "electron-builder build --win --publish never",
-  "deploy": "electron-builder build --win --publish always"
+  }
+  
 }

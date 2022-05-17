@@ -5,6 +5,24 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
     <link href="./styles.css" rel="stylesheet">
+    <style>
+      /* styles.css */
+
+/* Add styles here to customize the appearance of your app */
+#notification {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 200px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+  .hidden {
+    display: none;
+  }
+    </style>
     <title>Hello World!</title>
   </head>
   <body>
@@ -22,6 +40,28 @@
       </button>
     </div>
     <!-- You can also require other files to run in this process -->
-    <script src="./renderer.js"></script>
+    <script>
+      const {app, BrowserWindow,ipcMain,ipcRenderer} = require('electron')
+
+      const notification = document.getElementById('notification');
+const message = document.getElementById('message');
+const restartButton = document.getElementById('restart-button');ipcRenderer.on('update_available', () => {
+  ipcRenderer.removeAllListeners('update_available');
+  message.innerText = 'A new update is available. Downloading now...';
+  notification.classList.remove('hidden');
+});ipcRenderer.on('update_downloaded', () => {
+  ipcRenderer.removeAllListeners('update_downloaded');
+  message.innerText = 'Update Downloaded. It will be installed on restart. Restart now?';
+  restartButton.classList.remove('hidden');
+  notification.classList.remove('hidden');
+});
+
+function closeNotification() {
+    notification.classList.add('hidden');
+  }function restartApp() {
+    ipcRenderer.send('restart_app');
+  }
+
+    </script>
   </body>
 </html>
